@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <a href="RockClimbing.html" class="back-link">Back to Rock Climbing Page</a>
+
+    <title>Rock Climbing Jeopardy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url(Images/yosemite1.jpg); /* Replace with your background image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        /* Styling for the back link in the top left corner */
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 5px;
+            border: 2px solid #007BFF;
+            transition: background-color 0.3s;
+        }
+
+        .back-link:hover {
+            background-color: #0056b3;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .board {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            max-width: 800px;
+            visibility: hidden;
+        }
+
+        .category, .cell {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .cell {
+            font-size: 24px;
+        }
+
+        .category:hover, .cell:hover {
+            background-color: #0056b3;
+        }
+
+        .trivia-box {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            max-width: 600px;
+        }
+
+        .scoreboard {
+            margin-top: 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .score {
+            font-size: 18px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .overlay button {
+            background-color: #007BFF;
+            color: white;
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .overlay button:hover {
+            background-color: #0056b3;
+        }
+
+        .answer-box {
+            margin-top: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+        }
+
+        .answer-box input {
+            margin-top: 10px;
+            padding: 8px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .used {
+            background-color: grey !important;
+            cursor: not-allowed !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay" id="playerSelection">
+        <h2>Welcome to Rock Climbing Jeopardy</h2>
+        <p>Select the number of players:</p>
+        <button onclick="startGame(1)">1 Player</button>
+        <button onclick="startGame(2)">2 Players</button>
+        <button onclick="startGame(3)">3 Players</button>
+    </div>
+
+    <h1>Rock Climbing Jeopardy</h1>
+    <div class="scoreboard" id="scoreboard">
+        <!-- Scoreboard will dynamically update -->
+    </div>
+    <div class="board" id="gameBoard">
+        <!-- First row with category names -->
+        <div class="category">Rocks</div>
+        <div class="category">Techniques</div>
+        <div class="category">Climbers</div>
+        <div class="category">Gear</div>
+        <div class="category">History</div>
+        <!-- $100 to $500 questions -->
+        <div class="cell" onclick="toggleQuestion(0, 0)">$100</div>
+        <div class="cell" onclick="toggleQuestion(0, 1)">$100</div>
+        <div class="cell" onclick="toggleQuestion(0, 2)">$100</div>
+        <div class="cell" onclick="toggleQuestion(0, 3)">$100</div>
+        <div class="cell" onclick="toggleQuestion(0, 4)">$100</div>
+        
+        <div class="cell" onclick="toggleQuestion(1, 0)">$200</div>
+        <div class="cell" onclick="toggleQuestion(1, 1)">$200</div>
+        <div class="cell" onclick="toggleQuestion(1, 2)">$200</div>
+        <div class="cell" onclick="toggleQuestion(1, 3)">$200</div>
+        <div class="cell" onclick="toggleQuestion(1, 4)">$200</div>
+
+        <div class="cell" onclick="toggleQuestion(2, 0)">$300</div>
+        <div class="cell" onclick="toggleQuestion(2, 1)">$300</div>
+        <div class="cell" onclick="toggleQuestion(2, 2)">$300</div>
+        <div class="cell" onclick="toggleQuestion(2, 3)">$300</div>
+        <div class="cell" onclick="toggleQuestion(2, 4)">$300</div>
+
+        <div class="cell" onclick="toggleQuestion(3, 0)">$400</div>
+        <div class="cell" onclick="toggleQuestion(3, 1)">$400</div>
+        <div class="cell" onclick="toggleQuestion(3, 2)">$400</div>
+        <div class="cell" onclick="toggleQuestion(3, 3)">$400</div>
+        <div class="cell" onclick="toggleQuestion(3, 4)">$400</div>
+
+        <div class="cell" onclick="toggleQuestion(4, 0)">$500</div>
+        <div class="cell" onclick="toggleQuestion(4, 1)">$500</div>
+        <div class="cell" onclick="toggleQuestion(4, 2)">$500</div>
+        <div class="cell" onclick="toggleQuestion(4, 3)">$500</div>
+        <div class="cell" onclick="toggleQuestion(4, 4)">$500</div>
+    </div>
+    <div class="trivia-box" id="triviaBox">Click a question to start playing!</div>
+
+    <script>
+        // Rock Climbing Jeopardy questions and answers
+        const trivia = [
+            // Rocks category
+            [
+                { question: "What is the hardest rock climbing route ever graded?", answer: "Silence, 5.15d" },
+                { question: "Which country is known for the famous El Capitan?", answer: "USA (California)" },
+                { question: "What is the hardest bouldering problem in the world?", answer: "Perfecto Mundo (V16)" },
+                { question: "Which rock formation is known for its multi-pitch climbs?", answer: "Half Dome" },
+                { question: "What is the largest granite monolith in the world?", answer: "El Capitan" }
+            ],
+            // Techniques category
+            [
+                { question: "What is the climbing technique for maintaining balance on small holds?", answer: "Mantle" },
+                { question: "What is a technique for resting on a wall while still climbing?", answer: "Flagging" },
+                { question: "What climbing technique involves using one's arms to climb steep routes?", answer: "Lock-off" },
+                { question: "What term refers to climbing without using ropes?", answer: "Free soloing" },
+                { question: "What is a technique used for climbing overhangs?", answer: "Flagging" }
+            ],
+            // Climbers category
+            [
+                { question: "Who is known for the first free solo ascent of El Capitan?", answer: "Alex Honnold" },
+                { question: "Which climber set the record for the fastest ascent of Everest?", answer: "Kilian Jornet" },
+                { question: "Who was the first person to climb a 5.15 route?", answer: "Adam Ondra" },
+                { question: "Which climber is famous for bouldering V15 and V16 problems?", answer: "Nina Williams" },
+                { question: "Which legendary climber did the first ascent of the Nose on El Capitan?", answer: "Warren Harding" }
+            ],
+            // Gear category
+            [
+                { question: "What is the most common type of climbing rope used?", answer: "Dynamic rope" },
+                { question: "What gear is used to protect climbers during a fall?", answer: "Carabiner" },
+                { question: "What is the harness used for?", answer: "To secure the climber to the rope" },
+                { question: "What type of climbing shoe is Italian for shoe?", answer: "Scarpa" },
+                { question: "What handheld tool is used for ice climbing?", answer: "Ice axe" }
+            ],
+            // History category
+            [
+                { question: "Who was the first person to free climb the Nose of El Capitan?", answer: "Tommy Caldwell" },
+                { question: "Which company first created the modern-day climbing rope?", answer: "Petzl" },
+                { question: "What year was the first ascent of El Capitan's Nose?", answer: "1958" },
+                { question: "Who was the first person to climb Mount Everest?", answer: "Sir Edmund Hillary" },
+                { question: "When did climbing become an Olympic sport?", answer: "2020" }
+            ]
+        ];
+
+        let questionVisible = false;
+        let players = 0;
+        let currentPlayer = 0;
+        let scores = [];
+        let selectedQuestion = null;
+
+        function startGame(playerCount) {
+            players = playerCount;
+            scores = Array(players).fill(0);
+            updateScoreboard();
+            document.getElementById("playerSelection").style.display = "none";
+            document.getElementById("gameBoard").style.visibility = "visible";
+        }
+
+        function updateScoreboard() {
+            const scoreboard = document.getElementById("scoreboard");
+            scoreboard.innerHTML = '';
+            for (let i = 0; i < players; i++) {
+                scoreboard.innerHTML += `<div class="score">Player ${i + 1}: ${scores[i]} points</div>`;
+            }
+        }
+
+        function toggleQuestion(row, col) {
+            const triviaBox = document.getElementById('triviaBox');
+            const questionData = trivia[col][row];  // Flip row and column
+            const points = (row + 1) * 100;  // Points based on row (not column)
+
+            if (questionVisible) {
+                // Show answer and prompt for correctness
+                triviaBox.innerHTML = `<strong>Answer:</strong> ${questionData.answer}`;
+                const answerBox = document.createElement("div");
+                answerBox.classList.add("answer-box");
+                answerBox.innerHTML = `
+                    <p>Did you get it correct?</p>
+                    <input type="button" value="Yes" onclick="submitAnswer(true, ${points})">
+                    <input type="button" value="No" onclick="submitAnswer(false, ${points})">
+                `;
+                triviaBox.appendChild(answerBox);
+
+                // Mark the question box as used
+                document.getElementsByClassName("cell")[row * 5 + col].classList.add("used");
+
+                questionVisible = false;
+            } else {
+                // Show question
+                triviaBox.innerHTML = `<strong>Question:</strong> ${questionData.question}`;
+                selectedQuestion = { row, col };
+                questionVisible = true;
+            }
+        }
+
+        function submitAnswer(correct, points) {
+            if (correct) {
+                scores[currentPlayer] += points;
+            }
+            currentPlayer = (currentPlayer + 1) % players;
+            updateScoreboard();
+            document.getElementById("triviaBox").innerHTML = 'Click a question to start playing!';
+        }
+    </script>
+</body>
+</html>

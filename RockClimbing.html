@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Climbing</title>
+    <link href="css/Stylesheet.css" rel="stylesheet" />
+    <link href="css/layoutstyle.css" rel="stylesheet" />
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header Styles */
+        .common.header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-image: url(Images/mountain\ background.jpg);
+            background-size: cover;
+            background-position: center;
+            padding: 10px 20px;
+            color: white;
+        }
+
+        .common.header img {
+            height: 100px; /* Smaller size */
+            margin-right: 20px;
+            border-radius: 5px;
+        }
+
+        .common.header span {
+            flex: 1;
+        }
+
+        .common.header a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+
+        .common.header a:hover {
+            text-decoration: underline;
+        }
+
+        /* Content Styles */
+        .content {
+            width: 90%;
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .content h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .content p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .content ol {
+            margin-left: 20px;
+        }
+
+        .content ul {
+            margin-left: 40px;
+        }
+
+        .content a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .content a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #2a3d4f;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div class="common header">
+        <img src="Images/rock climber clipart.jpg" alt="Rock Climber Clip Art"> 
+        <span class="subheader">       
+            <a href="index.html" id="top">Home</a> |
+            <a href="Resume.html">Résumé</a> |
+            <a href="#">Rock Climbing</a>
+        </span>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h2>Why You Should Try Rock Climbing</h2>
+        <p>Rock climbing is not only an adventure sport but also an activity that benefits both your body and mind.</p>
+
+        <!-- Ordered List with Nested Unordered Lists -->
+        <ol>
+            <li>Improves Physical Strength
+                <ul>
+                    <li>Enhances grip strength and endurance.</li>
+                    <li>Builds core and upper body muscles.</li>
+                </ul>
+            </li>
+            <li>Boosts Mental Focus
+                <ul>
+                    <li>Develops problem-solving skills for challenging routes.</li>
+                    <li>Teaches concentration and mindfulness.</li>
+                </ul>
+            </li>
+            <li>Fosters a Sense of Community
+                <ul>
+                    <li>Connects you with like-minded climbers.</li>
+                    <li>Encourages teamwork and shared accomplishments.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <p>Test your rock climbing knowledge with a fun <a href="Rockclimbingjeopardy.html">Rock Climbing Jeopardy</a>!</p>
+
+        <p class="bold">View the graphic below for more information on climbing holds, muscles used, and to find a gym near you so that you can get climbing!</p>
+        
+        <!-- Tableau Embed -->
+        <div class='tableauPlaceholder' id='viz1733368005065' style='position: relative'><noscript><a href='#'><img alt='Dashboard 2 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ro&#47;RockClimbingWellness&#47;Dashboard2&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='RockClimbingWellness&#47;Dashboard2' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ro&#47;RockClimbingWellness&#47;Dashboard2&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1733368005065');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='2227px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Nathan Orton. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
